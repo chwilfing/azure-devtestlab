@@ -16,19 +16,6 @@
         "description": "The administrator password"
       }
     },
-    "SQL Server Service Account UserName": {
-      "type": "string",
-      "metadata": {
-        "description": "The SQL Server Service account name"
-      },
-      "defaultValue": "sql_service"
-    },
-    "SQL Server Service Account Password": {
-      "type": "securestring",
-      "metadata": {
-        "description": "The SQL Server Service account password"
-      }
-    },
     "_artifactsLocation": {
       "type": "string",
       "metadata": {
@@ -53,13 +40,11 @@
     "virtualNetworkAddressRange": "10.0.0.0/16",
     "adSubnet": "10.0.0.0/24",
     "sqlSubnet": "10.0.1.0/24",
-    "spWebSubnet": "10.0.2.0/24",
     "adNicIPAddress": "[variables('adPDCNICIPAddress')]",
     "adPDCNICIPAddress": "10.0.0.4",
     "dnsPrefix": "[toLower(concat('sp', uniqueString(resourceGroup().name)))]",
     "domainName": "[concat(variables('dnsPrefix'), '.local')]",
     "virtualNetworkName": "[concat(variables('resourcePrefix'), '-vnet')]",
-    "spWebIPAddressName": "[concat(variables('resourcePrefix'), '-ip')]",
     "sharePointFarmName": "[resourceGroup().name]",
     "assetLocation": "[concat(parameters('_artifactsLocation'),'/dsc')]",
     "adVMName": "[concat('vm-', take(uniqueString(variables('sharepointFarmName')), 8), '-ad')]",
@@ -67,21 +52,15 @@
     "LBFE": "LBFE",
     "LBBE": "LBBE",
     "RDPNAT": "RDP",
-    "spWebNAT": "spWeb",
-    "spCANAT": "spCentralAdmin",
     "adSubnetName": "adSubnet",
     "sqlSubnetName": "sqlSubnet",
-    "spSubnetName": "spSubnet",
     "adNicName": "adNic",
     "sqlNicName": "sqlNic",
-    "spNicName": "spNic",
     "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName'))]",
     "adSubnetRef": "[concat(variables('VnetID'),'/subnets/',variables('adSubnetName'))]",
     "sqlSubnetRef": "[concat(variables('VnetID'),'/subnets/',variables('sqlSubnetName'))]",
-    "spSubnetRef": "[concat(variables('VnetID'),'/subnets/',variables('spSubnetName'))]",
     "adLBName": "adLoadBalancer",
     "sqlLBName": "sqlLoadBalancer",
-    "spLBName": "spLoadBalancer",
     "adlbID": "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]",
     "adRDPNATRuleID": "[concat(variables('adlbID'),'/inboundNatRules/',variables('RDPNAT'))]",
     "adBEAddressPoolID": "[concat(variables('adlbID'),'/backendAddressPools/',variables('LBBE'))]",
@@ -93,7 +72,6 @@
     "sqlLogDisk": "SQLLogDisk",
     "adpublicIPAddressName": "adpublicIP",
     "sqlpublicIPAddressName": "sqlpublicIP",
-    "spAvailabilitySetName": "spAvailabiltySet",
     "sqlAvailabilitySetName": "sqlAvailabiltySet",
     "adAvailabilitySetName": "adAvailabiltySet",
     "publicIPAddressType": "Dynamic",
@@ -109,22 +87,12 @@
         "properties": {
           "addressPrefix": "[variables('sqlSubnet')]"
         }
-      },
-      {
-        "name": "[variables('spSubnetName')]",
-        "properties": {
-          "addressPrefix": "[variables('spWebSubnet')]"
-        }
       }
     ],
-    "SpPublicIpnew": "[resourceId(concat('Microsoft.Network','/','publicIPAddresses'),variables('spWebIPAddressName'))]",
     "adPublicIpResourceId": "[resourceId(concat('Microsoft.Network','/','publicIPAddresses'),variables('adpublicIPAddressName'))]",
     "sqlPublicIpResourceId": "[resourceId(concat('Microsoft.Network','/','publicIPAddresses'),variables('sqlpublicIPAddressName'))]",
-    "splbResourceId": "[resourceId(concat('Microsoft.Network','/','loadBalancers'),variables('spLBName'))]",
     "adModulesURL": "[concat(variables('assetLocation'),'/CreateADPDC.ps1.zip')]",
     "adConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
-    "sqlConfigureModulesURL": "[concat(variables('assetLocation'),'/ConfigureSqlServer.ps1.zip')]",
-    "sqlConfigurationFunction": "ConfigureSqlServer.ps1\\ConfigureSqlServer",
     "sqlPrepareModulesURL": "[concat(variables('assetLocation'),'/PrepareSqlServer.ps1.zip')]",
     "sqlPreparationFunction": "PrepareSqlServer.ps1\\PrepareSqlServer",
     "storageAccountSetupURL": "[concat(parameters('_artifactsLocation'),'/storageAccount.json', parameters('_artifactsLocationSasToken'))]",
@@ -237,7 +205,6 @@
         }
       }
     },
-
     {
       "name": "SettingUpLoadBalancers",
       "type": "Microsoft.Resources/deployments",
@@ -453,7 +420,6 @@
         }
       }
     },
-
     {
       "name": "UpdatingDNStoPrimaryADVM",
       "type": "Microsoft.Resources/deployments",

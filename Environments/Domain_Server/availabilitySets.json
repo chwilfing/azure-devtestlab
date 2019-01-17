@@ -10,21 +10,12 @@
     },
     "sqlAvailabilitySetName": {
       "type": "string"
-    },
-    "spAvailabilitySetName": {
-      "type": "string"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Compute/availabilitySets",
       "name": "[parameters('adAvailabilitySetName')]",
-      "apiVersion": "2015-06-15",
-      "location": "[parameters('location')]"
-    },
-    {
-      "type": "Microsoft.Compute/availabilitySets",
-      "name": "[parameters('spAvailabilitySetName')]",
       "apiVersion": "2015-06-15",
       "location": "[parameters('location')]"
     },

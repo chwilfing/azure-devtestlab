@@ -16,8 +16,14 @@
         "description": "The administrator password"
       }
     },
+    "domainname": {
+      "type": "string",
+      "maxLength": 15,
+      "metadata": { "description": "name of the domain" }
+    },
     "_artifactsLocation": {
       "type": "string",
+      "defaultValue": "https://raw.githubusercontent.com/chwilfing/azure-devtestlab/master/Environments/Domain_Server",
       "metadata": {
         "description": "The base URI where artifacts required by this template are located. When the template is deployed using the accompanying scripts, a private location in the subscription will be used and this value will be automatically generated."
       }
@@ -42,7 +48,7 @@
     "sqlSubnet": "10.0.1.0/24",
     "adNicIPAddress": "[variables('adPDCNICIPAddress')]",
     "adPDCNICIPAddress": "10.0.0.4",
-    "dnsPrefix": "[toLower(concat('sp', uniqueString(resourceGroup().name)))]",
+    "dnsPrefix": "[toLower(parameters('domainname'))]",
     "domainName": "[concat(variables('dnsPrefix'), '.local')]",
     "virtualNetworkName": "[concat(variables('resourcePrefix'), '-vnet')]",
     "sharePointFarmName": "[resourceGroup().name]",

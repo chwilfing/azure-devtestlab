@@ -99,8 +99,6 @@
     "sqlPublicIpResourceId": "[resourceId(concat('Microsoft.Network','/','publicIPAddresses'),variables('sqlpublicIPAddressName'))]",
     "adModulesURL": "[concat(variables('assetLocation'),'/CreateADPDC.ps1.zip')]",
     "adConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
-    "sqlPrepareModulesURL": "[concat(variables('assetLocation'),'/PrepareSqlServer.ps1.zip')]",
-    "sqlPreparationFunction": "PrepareSqlServer.ps1\\PrepareSqlServer",
     "storageAccountSetupURL": "[concat(parameters('_artifactsLocation'),'/storageAccount.json', parameters('_artifactsLocationSasToken'))]",
     "creatingPublicIPsUrl": "[concat(parameters('_artifactsLocation'),'/creatingPublicIPs.json', parameters('_artifactsLocationSasToken'))]",
     "vnetwithDNSTemplateUrl": "[concat(parameters('_artifactsLocation'),'/vnet-with-dns-server.json', parameters('_artifactsLocationSasToken'))]",
@@ -295,12 +293,6 @@
           },
           "sqlRDPNATRuleID": {
             "value": "[variables('sqlRDPNATRuleID')]"
-          },
-          "LBBE": {
-            "value": "[variables('LBBE')]"
-          },
-          "RDPNAT": {
-            "value": "[variables('RDPNAT')]"
           }
         }
       }

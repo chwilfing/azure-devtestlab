@@ -403,17 +403,8 @@
           "sqlNicName": {
             "value": "[variables('sqlNicName')]"
           },
-          "sqlPrepareModulesURL": {
-            "value": "[variables('sqlPrepareModulesURL')]"
-          },
-          "sqlPreparationFunction": {
-            "value": "[variables('sqlPreparationFunction')]"
-          },
-          "DNSServerAddress": {
-            "value": "[variables('adNicIPAddress')]"
-          },
-          "_artifactsLocationSasToken": {
-            "value": "[parameters('_artifactsLocationSasToken')]"
+          "domainName" : {
+              "value" : "[variables('domainName')]s"
           }
         }
       }

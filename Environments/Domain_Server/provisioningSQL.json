@@ -32,18 +32,12 @@
     "sqlNicName": {
       "type": "string"
     },
-    "sqlPrepareModulesURL": {
-      "type": "string"
-    },
-    "sqlPreparationFunction": {
-      "type": "string"
-    },
-    "DNSServerAddress": {
-      "type": "string"
-    },
-    "_artifactsLocationSasToken": {
-      "type": "string"
+    "domainName" : {
+        "type" : "string"
     }
+  },
+  "variables": {
+    "domainJoinOptions": 3
   },
   "resources": [
     {
@@ -117,28 +111,26 @@
       }
     },
     {
-      "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(parameters('sqlVMName'),'/CreateSQLServer')]",
-      "apiVersion": "2015-06-15",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('sqlVMName'))]"
-      ],
-      "properties": {
-        "publisher": "Microsoft.Powershell",
-        "type": "DSC",
-        "typeHandlerVersion": "2.20",
-        "autoUpgradeMinorVersion": true,
-        "settings": {
-          "ModulesUrl": "[parameters('sqlPrepareModulesURL')]",
-          "SasToken": "[parameters('_artifactsLocationSasToken')]",
-          "ConfigurationFunction": "[parameters('sqlPreparationFunction')]",
-          "Properties": {
-                "DNSServer": "[parameters('DNSServerAddress')]"
+        "comments": "Join domain - JsonADDomainExtension",
+        "apiVersion": "2015-06-15",
+        "type": "Microsoft.Compute/virtualMachines/extensions",
+        "name": "[concat(parameters('sqlVMName'),'/joindomain')]",
+        "location": "[parameters('location')]",
+        "properties": {
+          "publisher": "Microsoft.Compute",
+          "type": "JsonADDomainExtension",
+          "typeHandlerVersion": "1.3",
+          "autoUpgradeMinorVersion": true,
+          "settings": {
+            "Name": "[parameters('domainName')]",
+            "User": "[parameters('adminUsername')]",
+            "Restart": "true",
+            "Options": "[variables('domainJoinOptions')]"
+          },
+          "protectedSettings": {
+            "Password": "[parameters('adminPassword')]"
           }
-        },
-        "protectedSettings": null
-      }
+        }
     }
   ],
   "outputs": {}

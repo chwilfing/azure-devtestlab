@@ -404,7 +404,7 @@
             "value": "[variables('sqlNicName')]"
           },
           "domainName" : {
-              "value" : "[variables('domainName')]s"
+              "value" : "[variables('domainName')]"
           }
         }
       }

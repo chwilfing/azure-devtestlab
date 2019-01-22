@@ -49,7 +49,8 @@
     "adNicIPAddress": "[variables('adPDCNICIPAddress')]",
     "adPDCNICIPAddress": "10.0.0.4",
     "dnsPrefix": "[toLower(parameters('domainname'))]",
-    "domainName": "[concat(variables('dnsPrefix'), '.local')]",
+    "domainName": "[parameters('domainname')]",
+    "domainFQDN": "[concat(variables('dnsPrefix'), '.local')]",
     "virtualNetworkName": "[concat(variables('resourcePrefix'), '-vnet')]",
     "sharePointFarmName": "[resourceGroup().name]",
     "assetLocation": "[concat(parameters('_artifactsLocation'),'/dsc')]",
@@ -340,7 +341,7 @@
             "value": "[variables('adConfigurationFunction')]"
           },
           "domainName": {
-            "value": "[variables('domainName')]"
+            "value": "[variables('domainFQDN')]"
           },
           "_artifactsLocationSasToken": {
             "value": "[parameters('_artifactsLocationSasToken')]"

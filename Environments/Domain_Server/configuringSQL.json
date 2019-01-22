@@ -19,7 +19,7 @@
     }
   },
   "variables": {
-      "ouPath" : "[concat('OU=DomainJoined', 'DC=', parameters('domainName'),'DC=local')]"
+      "ouPath" : "[concat('OU=DomainJoined', ',DC=', parameters('domainName'),',DC=local')]"
   },
   "resources": [
     {

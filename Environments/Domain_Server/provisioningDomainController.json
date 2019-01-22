@@ -64,15 +64,15 @@
           "osDisk": {
             "name": "osdisk",
             "caching": "ReadWrite",
-            "createOption": "FromImage",
+            "createOption": "FromImage"
           },
           "dataDisks": [
             {
               "name": "[concat(parameters('adVMName'),'-data-disk1')]",
               "caching": "None",
-              "createOption": "empty",
+              "createOption": "Empty",
               "diskSizeGB": 1000,
-              "lun": 0,
+              "lun": 0
             }
           ]
         },

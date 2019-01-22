@@ -72,7 +72,10 @@
               "caching": "None",
               "createOption": "empty",
               "diskSizeGB": 1000,
-              "lun": 0
+              "lun": 0,
+              "managedDisk": {
+                "id": "[resourceId('Microsoft.Compute/disks/', concat(parameters('adVMName'),'-datadisk1'))]"
+              }
             }
           ]
         },

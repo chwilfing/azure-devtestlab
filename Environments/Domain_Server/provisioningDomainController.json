@@ -64,7 +64,7 @@
           "osDisk": {
             "name": "osdisk",
             "caching": "ReadWrite",
-            "createOption": "FromImage"
+            "createOption": "FromImage",
           },
           "dataDisks": [
             {
@@ -73,9 +73,6 @@
               "createOption": "empty",
               "diskSizeGB": 1000,
               "lun": 0,
-              "managedDisk": {
-                "id": "[resourceId('Microsoft.Compute/disks/', concat(parameters('adVMName'),'-datadisk1'))]"
-              }
             }
           ]
         },
@@ -91,7 +88,7 @@
         {
           "type": "Microsoft.Compute/virtualMachines/extensions",
           "name": "[concat(parameters('adVMName'),'/InstallDomainController')]",
-          "apiVersion": "2015-06-15",
+          "apiVersion": "2017-03-30",
           "location": "[parameters('location')]",
           "dependsOn": [
             "[resourceId('Microsoft.Compute/virtualMachines', parameters('adVMName'))]"
@@ -123,6 +120,5 @@
         }
       ]
     }
-  ],
-  "outputs": {}
+  ]
 }

@@ -364,7 +364,8 @@
         "Microsoft.Resources/deployments/SettingUpStorageAccount",
         "Microsoft.Resources/deployments/CreatingNetworkInterfaces",
         "Microsoft.Resources/deployments/CreatingAvailabilitySets",
-        "Microsoft.Resources/deployments/SettingUpLoadBalancers"
+        "Microsoft.Resources/deployments/SettingUpLoadBalancers",
+        "Microsoft.Resources/deployments/UpdatingDNStoPrimaryADVM"
       ],
       "properties": {
         "mode": "Incremental",

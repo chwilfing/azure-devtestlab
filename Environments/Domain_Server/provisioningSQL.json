@@ -20,16 +20,13 @@
     "adminPassword": {
       "type": "securestring"
     },
-    "storageAccountNamePrefix": {
-      "type": "string"
-    },
     "sqlNicName": {
       "type": "string"
     }
   },
   "resources": [
     {
-      "apiVersion": "2015-06-15",
+      "apiVersion": "2017-03-30",
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[parameters('sqlVMName')]",
       "location": "[parameters('location')]",
@@ -54,9 +51,6 @@
           },
           "osDisk": {
             "name": "osdisk",
-            "vhd": {
-              "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'1.blob.core.windows.net/vhds/',parameters('sqlVMName'),'-osdisk.vhd')]"
-            },
             "caching": "ReadWrite",
             "createOption": "FromImage"
           }
@@ -67,12 +61,6 @@
               "id": "[resourceId('Microsoft.Network/networkInterfaces',parameters('sqlNicName'))]"
             }
           ]
-        },
-        "diagnosticsProfile": {
-          "bootDiagnostics": {
-            "enabled": "true",
-            "storageUri": "[concat('http://',parameters('storageAccountNamePrefix'),'2.blob.core.windows.net')]"
-          }
         }
       }
     }

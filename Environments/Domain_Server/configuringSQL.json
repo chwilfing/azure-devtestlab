@@ -18,6 +18,9 @@
       "type": "string"
     }
   },
+  "variables": {
+      "ouPath" : "[concat('OU=DomainJoined', 'DC=', parameters('domainName'),'DC=local')]"
+  },
   "resources": [
     {
       "comments": "Join domain - JsonADDomainExtension",
@@ -33,6 +36,7 @@
         "settings": {
           "Name": "[parameters('domainName')]",
           "User": "[parameters('adminUsername')]",
+          "oupath" : "[variables('ouPath')]",
           "Restart": "true",
           "Options": 3
         },

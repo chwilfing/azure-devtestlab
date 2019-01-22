@@ -20,12 +20,6 @@
     "adminPassword": {
       "type": "securestring"
     },
-    "storageAccountNamePrefix": {
-      "type": "string"
-    },
-    "adDataDisk": {
-      "type": "string"
-    },
     "adNicName": {
       "type": "string"
     },
@@ -44,7 +38,7 @@
   },
   "resources": [
     {
-      "apiVersion": "2015-06-15",
+      "apiVersion": "2017-03-30",
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[parameters('adVMName')]",
       "location": "[parameters('location')]",
@@ -69,17 +63,11 @@
           },
           "osDisk": {
             "name": "osdisk",
-            "vhd": {
-              "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'1.blob.core.windows.net/vhds/',parameters('adVMName'),'-osdisk.vhd')]"
-            },
             "caching": "ReadWrite",
             "createOption": "FromImage"
           },
           "dataDisks": [
             {
-              "vhd": {
-                "uri": "[concat('http://',parameters('storageAccountNamePrefix'),'1.blob.core.windows.net/vhds/', parameters('adDataDisk'),'-1.vhd')]"
-              },
               "name": "[concat(parameters('adVMName'),'-data-disk1')]",
               "caching": "None",
               "createOption": "empty",
@@ -94,12 +82,6 @@
               "id": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adNicName'))]"
             }
           ]
-        },
-        "diagnosticsProfile": {
-          "bootDiagnostics": {
-            "enabled": "true",
-            "storageUri": "[concat('http://',parameters('storageAccountNamePrefix'),'2.blob.core.windows.net')]"
-          }
         }
       },
       "resources": [

@@ -330,12 +330,6 @@
           "adminPassword": {
             "value": "[parameters('Admin User Password')]"
           },
-          "storageAccountNamePrefix": {
-            "value": "[variables('storageAccountNamePrefix')]"
-          },
-          "adDataDisk": {
-            "value": "[variables('adDataDisk')]"
-          },
           "adNicName": {
             "value": "[variables('adNicName')]"
           },
@@ -389,9 +383,6 @@
           },
           "adminPassword": {
             "value": "[parameters('Admin User Password')]"
-          },
-          "storageAccountNamePrefix": {
-            "value": "[variables('storageAccountNamePrefix')]"
           },
           "sqlNicName": {
             "value": "[variables('sqlNicName')]"

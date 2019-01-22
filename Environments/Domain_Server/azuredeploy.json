@@ -412,8 +412,7 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [
-        "Microsoft.Resources/deployments/ProvisioningADDomainController",
-        "Microsoft.Resources/deployments/ProvisioningSQLServerVM"
+        "Microsoft.Resources/deployments/ProvisioningADDomainController"
       ],
       "properties": {
         "mode": "Incremental",

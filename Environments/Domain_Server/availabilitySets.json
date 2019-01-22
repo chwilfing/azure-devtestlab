@@ -18,6 +18,10 @@
       "name": "[parameters('adAvailabilitySetName')]",
       "apiVersion": "2017-03-30",
       "location": "[parameters('location')]",
+      "properties": {
+        "PlatformUpdateDomainCount": 2,
+        "PlatformFaultDomainCount": 2
+      },
       "sku": {
         "name": "Aligned"
       }
@@ -27,6 +31,10 @@
       "name": "[parameters('sqlAvailabilitySetName')]",
       "apiVersion": "2017-03-30",
       "location": "[parameters('location')]",
+      "properties": {
+        "PlatformUpdateDomainCount": 2,
+        "PlatformFaultDomainCount": 2
+      },
       "sku": {
         "name": "Aligned"
       }

@@ -74,8 +74,6 @@
     "sqlRDPNATRuleID": "[concat(variables('sqllbID'),'/inboundNatRules/',variables('RDPNAT'))]",
     "sqlBEAddressPoolID": "[concat(variables('sqllbID'),'/backendAddressPools/',variables('LBBE'))]",
     "adDataDisk": "ADDataDisk",
-    "sqlDataDisk": "SQLDataDisk",
-    "sqlLogDisk": "SQLLogDisk",
     "adpublicIPAddressName": "adpublicIP",
     "sqlpublicIPAddressName": "sqlpublicIP",
     "sqlAvailabilitySetName": "sqlAvailabiltySet",
@@ -394,12 +392,6 @@
           },
           "storageAccountNamePrefix": {
             "value": "[variables('storageAccountNamePrefix')]"
-          },
-          "sqlDataDisk": {
-            "value": "[variables('sqlDataDisk')]"
-          },
-          "sqlLogDisk": {
-            "value": "[variables('sqlLogDisk')]"
           },
           "sqlNicName": {
             "value": "[variables('sqlNicName')]"

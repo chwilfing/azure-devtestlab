@@ -38,7 +38,7 @@
   },
   "resources": [
     {
-      "apiVersion": "2017-03-30",
+      "apiVersion": "2018-06-01",
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[parameters('adVMName')]",
       "location": "[parameters('location')]",
@@ -62,17 +62,23 @@
             "version": "latest"
           },
           "osDisk": {
-            "name": "osdisk",
+            "name": "[concat(parameters('adVMName'),'-osdisk')]",
             "caching": "ReadWrite",
-            "createOption": "FromImage"
+            "createOption": "FromImage",
+            "managedDisk": {
+              "storageAccountType": "StandardSSD_LRS"
+            }
           },
           "dataDisks": [
             {
-              "name": "[concat(parameters('adVMName'),'-data-disk1')]",
+              "name": "[concat(parameters('adVMName'),'-ntds-disk')]",
               "caching": "None",
               "createOption": "Empty",
               "diskSizeGB": 1000,
-              "lun": 0
+              "lun": 0,
+              "managedDisk": {
+                "storageAccountType": "StandardSSD_LRS"
+              }
             }
           ]
         },

@@ -35,7 +35,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "Name": "[concat(parameters('domainName'),'.local')]",
-          "User": "[parameters('adminUsername')]",
+          "User": "[concat(parameters('domainName'), '\\', parameters('adminUsername'))]",
           "oupath" : "[variables('ouPath')]",
           "Restart": "true",
           "Options": 3

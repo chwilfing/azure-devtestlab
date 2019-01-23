@@ -34,7 +34,7 @@
         "typeHandlerVersion": "1.3",
         "autoUpgradeMinorVersion": true,
         "settings": {
-          "Name": "[parameters('domainName')]",
+          "Name": "[concat(parameters('domainName'),'.local')]",
           "User": "[parameters('adminUsername')]",
           "oupath" : "[variables('ouPath')]",
           "Restart": "true",

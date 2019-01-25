@@ -5,6 +5,7 @@
     "Admin UserName": {
       "type": "string",
       "minLength": 1,
+      "maxLength": 15,
       "metadata": {
         "description": "The administrator login name"
       }
@@ -12,6 +13,7 @@
     "Admin User Password": {
       "type": "securestring",
       "minLength": 8,
+      "maxLength": 15,
       "metadata": {
         "description": "The administrator password"
       }
